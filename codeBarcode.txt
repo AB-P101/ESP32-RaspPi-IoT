@@ -1,0 +1,12 @@
+import paho.mqtt.client as mqtt
+from time import sleep
+
+while 1:
+    client = mqtt.Client() 
+    #client.username_pw_set("pi", "1234")
+    client.connect("192.168.0.206", 1883, 60)
+    scode= str(input())
+    client.publish("/qrcode",payload=scode, qos=0, retain=False)
+    print(f"send {scode} to test/qrcode")
+    print(f"Scanned Barcode is")
+    print(scode)
